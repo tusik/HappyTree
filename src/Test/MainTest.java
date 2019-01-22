@@ -8,7 +8,7 @@ public class MainTest {
         HappyTree happyTree = new HappyTree();
         happyTree.insert("root");
         HappyTree node1 = new HappyTree();
-        happyTree.add(node1);
+
         System.out.println(happyTree);
     }
 }

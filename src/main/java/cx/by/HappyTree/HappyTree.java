@@ -44,8 +44,24 @@ public class HappyTree implements Serializable, Tree {
         return length;
     }
 
+    public TreeNode[] findToRear(Object contain) {
+
+        return new TreeNode[0];
+    }
+
+    public TreeNode[] findToFrond(Object contain) {
+        return new TreeNode[0];
+    }
+
+    public TreeNode[] findAll(Object contain) {
+        return new TreeNode[0];
+    }
+
     public HappyTree split(TreeNode node) {
-        node.parent=null;
+        if(children.indexOf(node)>=0){
+            node.parent=null;
+            removeChild(node);
+        }
         return (HappyTree)node;
     }
 
@@ -69,6 +85,7 @@ public class HappyTree implements Serializable, Tree {
                     incrLength();
                 }
             }
+            children.add((TreeNode) item);
             ((HappyTree)item).setParent(this);
 
         }

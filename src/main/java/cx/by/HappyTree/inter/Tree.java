@@ -15,4 +15,8 @@ public interface Tree {
     void incrLength();
     void reduceLength();
     long length();
+    TreeNode[] findToRear(Object contain);
+    TreeNode[] findToFrond(Object contain);
+    TreeNode[] findAll(Object contain);
+
 }

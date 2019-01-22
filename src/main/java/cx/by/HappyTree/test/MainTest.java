@@ -1,8 +1,7 @@
-package cx.by.HappyTree.test;
-
 import cx.by.HappyTree.HappyTree;
 import cx.by.HappyTree.TreeNode;
 import org.junit.Test;
+
 
 public class MainTest {
     @Test

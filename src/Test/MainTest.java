@@ -10,5 +10,8 @@ public class MainTest {
         HappyTree node1 = new HappyTree();
         happyTree.add(node1);
         System.out.println(happyTree);
+        HappyTree node2 = new HappyTree();
+        happyTree.add(node2);
+        HappyTree node1_1 = new HappyTree();
     }
 }

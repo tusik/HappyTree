@@ -6,11 +6,3 @@ cache:
     - '$HOME/.m2/repository'
 script:
   - mvn clean package
-deploy:
-  provider: releases
-  api_key:
-    secure: 697e7772b8a0c3d346f1d6161068365724fab291
-  file: target/*.jar
-  on:
-    tags: true
-    all_branches: true

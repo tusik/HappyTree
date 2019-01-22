@@ -40,73 +40,83 @@ public class HappyTree implements Serializable, Tree {
         }
     }
 
-    @Override
     public long length() {
         return length;
     }
 
-    @Override
     public HappyTree split(TreeNode node) {
         node.parent=null;
         return (HappyTree)node;
     }
 
-    @Override
     public void initChild() {
-        children = new ArrayList<>();
+        children = new ArrayList<TreeNode>();
     }
 
-    @Override
-    public boolean addChild(Object node) {
-
-        if((node instanceof TreeNode||node instanceof HappyTree)){
-            for(int i = 0; i<((TreeNode) node).length();i++){
-                length++;
-            }
-            if(null==parent){
+    public boolean addChild(Object ... node) {
+        for(Object item:node){
+            if((item instanceof TreeNode||item instanceof HappyTree)){
+                long maxLen=1;
+                for (TreeNode tree:children) {
+                    if(maxLen<tree.length())maxLen=tree.length();
+                }
+                for(int i = -1; i<(((HappyTree) item).length()-maxLen);i++){
+                    incrLength();
+                }
 
             }else {
-                for(int i = 0; i<((TreeNode) node).length();i++){
-                    ((TreeNode)parent).incrLength();
+                if(children.size()==0){
+                    incrLength();
                 }
             }
+            ((HappyTree)item).setParent(this);
 
-        }else {
-            if(children.size()==0){
-                length++;
-                if(null!=parent)
-                    ((TreeNode)parent).incrLength();
-            }else {
-
-            }
         }
-        ((HappyTree)node).setParent(this);
-        return children.add((TreeNode) node);
-    }
-
-    @Override
-    public boolean removeChild(Object node) {
-        return children.remove(node);
-    }
-
-    @Override
-    public boolean clear() {
-        children.clear();
         return true;
     }
-    @Override
+
+    public boolean removeChild(Object node) {
+        if(children.indexOf((TreeNode) node)>=0){
+            if(((TreeNode)node).length()==length-1){
+                for(int i =0;i<length-1;i++){
+                    reduceLength();
+                }
+            }
+            return children.remove(node);
+        }
+        return false;
+    }
+
+    public boolean clear() {
+        children.clear();
+        while(length!=1){
+            reduceLength();
+        }
+        return true;
+    }
+
     public boolean insert(Object o){
         this.contain=o;
         return true;
     }
-    @Override
+
     public Object contain(){
         return contain;
     }
 
-    @Override
     public boolean setParent(Object node) {
         this.parent=node;
         return true;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if(((TreeNode)obj).length()==length){
+            if(null==((TreeNode)obj).contain()&&null==contain){
+                return true;
+            }
+            return ((TreeNode)obj).contain().equals(contain);
+        }
+        return false;
     }
 }

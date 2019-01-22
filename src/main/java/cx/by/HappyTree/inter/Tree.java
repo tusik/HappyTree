@@ -6,7 +6,7 @@ import cx.by.HappyTree.TreeNode;
 public interface Tree {
     HappyTree split(TreeNode node);
     void initChild();
-    boolean addChild(Object node);
+    boolean addChild(Object ... node);
     boolean removeChild(Object node);
     boolean clear();
     boolean insert(Object o);

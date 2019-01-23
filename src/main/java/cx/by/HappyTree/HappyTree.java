@@ -1,139 +1,52 @@
+/*
+ * Copyright (c) 2019. All rights reserved.
+ * @Author: https://by.cx
+ * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
+ */
+
 package cx.by.HappyTree;
 
-import cx.by.HappyTree.inter.Tree;
-
-import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
-public class HappyTree implements Serializable, Tree {
-    public Object parent=null;
-    private List<TreeNode> children;
-    private Object contain=null;
-    private long length=1;
+
+public class HappyTree extends TreeNode {
+    protected HashMap<TreeNode,ArrayList<Object>> innerList = new HashMap<>();
     public HappyTree(){
-        initChild();
+        super();
+        root=this;
     }
-
-    public HappyTree(Object o){
-        initChild();
-        this.contain=o;
-    }
-
-    protected void fixLength(){
-
-    }
-
-    public void incrLength(){
-        length++;
-        if(null!=parent){
-            ((TreeNode)parent).incrLength();
+    @Override
+    public boolean addChild(Object... node) {
+        for(Object o:node){
+            ((TreeNode)o).setRoot(this);
+            if(this.innerList.get(this)==null){
+                ArrayList<Object> list = new ArrayList<>();
+                list.add(((TreeNode) o).contain);
+                this.innerList.put(this,list);
+            }else {
+                this.innerList.get(this).add(((TreeNode) o).contain);
+            }
+            listTreeToSetRoot((TreeNode) o);
         }
+        return super.addChild(node);
     }
-
-    public void reduceLength(){
-        if(length>1){
-            length--;
-        }
-        if(null!=parent){
-            ((TreeNode)parent).reduceLength();
-        }
-    }
-
-    public long length() {
-        return length;
-    }
-
-    public TreeNode[] findToRear(Object contain) {
-
-        return new TreeNode[0];
-    }
-
-    public TreeNode[] findToFrond(Object contain) {
-        return new TreeNode[0];
-    }
-
-    public TreeNode[] findAll(Object contain) {
-        return new TreeNode[0];
-    }
-
-    public HappyTree split(TreeNode node) {
-        if(children.indexOf(node)>=0){
-            node.parent=null;
-            removeChild(node);
-        }
-        return (HappyTree)node;
-    }
-
-    public void initChild() {
-        children = new ArrayList<TreeNode>();
-    }
-
-    public boolean addChild(Object ... node) {
-        for(Object item:node){
-            if((item instanceof TreeNode||item instanceof HappyTree)){
-                long maxLen=1;
-                for (TreeNode tree:children) {
-                    if(maxLen<tree.length())maxLen=tree.length();
-                }
-                for(int i = -1; i<(((HappyTree) item).length()-maxLen);i++){
-                    incrLength();
-                }
+    private void listTreeToSetRoot(TreeNode node){
+        for(TreeNode n:node.children()){
+            n.setRoot(this);
+            if(this.innerList.get(n.parent)==null){
+                ArrayList<Object> list = new ArrayList<>();
+                list.add(((TreeNode) n).contain);
+                this.innerList.put(node,list);
 
             }else {
-                if(children.size()==0){
-                    incrLength();
-                }
+                this.innerList.get(node).add(((TreeNode) n).contain);
             }
-            children.add((TreeNode) item);
-            ((HappyTree)item).setParent(this);
-
-        }
-        return true;
-    }
-
-    public boolean removeChild(Object node) {
-        if(children.indexOf((TreeNode) node)>=0){
-            if(((TreeNode)node).length()==length-1){
-                for(int i =0;i<length-1;i++){
-                    reduceLength();
-                }
+            if(n.children().size()>0){
+                listTreeToSetRoot(n);
             }
-            return children.remove(node);
         }
-        return false;
     }
 
-    public boolean clear() {
-        children.clear();
-        while(length!=1){
-            reduceLength();
-        }
-        return true;
-    }
-
-    public boolean insert(Object o){
-        this.contain=o;
-        return true;
-    }
-
-    public Object contain(){
-        return contain;
-    }
-
-    public boolean setParent(Object node) {
-        this.parent=node;
-        return true;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if(((TreeNode)obj).length()==length){
-            if(null==((TreeNode)obj).contain()&&null==contain){
-                return true;
-            }
-            return ((TreeNode)obj).contain().equals(contain);
-        }
-        return false;
-    }
 }

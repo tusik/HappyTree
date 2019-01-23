@@ -32,7 +32,7 @@ public class HappyTree extends TreeNode {
             TreeNode node = (TreeNode) key.next();
             for(Object o : innerList.get(node)){
                 if(((TreeNode)o).contain.equals(contain)){
-                    list.add(node);
+                    list.add((TreeNode) o);
                 }
             }
         }

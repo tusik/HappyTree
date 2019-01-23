@@ -17,6 +17,7 @@ public interface Tree {
     TreeNode parent();
     HappyTree split(TreeNode node);
     List<TreeNode> children();
+    ArrayList<TreeNode> getAllChild();
     boolean addChild(Object ... node);
     boolean removeChild(Object node);
     boolean clear();

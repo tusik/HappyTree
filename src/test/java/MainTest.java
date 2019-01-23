@@ -36,6 +36,10 @@ public class MainTest {
         happyTree.removeChild(node1);
         System.out.println(System.currentTimeMillis()-start);
         System.out.println(happyTree.findAll("node2"));
+        System.out.println(node1.getAllChild());
+        for (TreeNode node : node1.getAllChild()){
+            System.out.println(node.contain());
+        }
     }
     @Test
     public void objectTest(){

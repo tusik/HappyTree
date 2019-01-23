@@ -9,6 +9,7 @@ package cx.by.HappyTree;
 import cx.by.HappyTree.inter.Tree;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class TreeNode implements Tree {
@@ -70,6 +71,41 @@ public class TreeNode implements Tree {
     }
 
     @Override
+    public ArrayList<TreeNode> getAllChild() {
+        if(root() instanceof HappyTree|| null != root){
+            ArrayList<TreeNode> resList = new ArrayList<>();
+            ArrayList<Object> tmpList = ((HappyTree) root()).innerList.get(this);
+            resList.addAll(getChild(this));
+            for(Object node : tmpList){
+                resList.add((TreeNode) node);
+            }
+            return resList;
+        }else {
+
+        }
+        return null;
+    }
+    public ArrayList<TreeNode> getChild(TreeNode parent){
+        ArrayList<Object> tmpList = ((HappyTree) root()).innerList.get(parent);
+        ArrayList<TreeNode> resList = new ArrayList<>();
+        Iterator iterator = ((HappyTree) root()).innerList.keySet().iterator();
+        while (iterator.hasNext()){
+            TreeNode node = (TreeNode) iterator.next();
+            for(Object obj:tmpList){
+                //System.out.println(((TreeNode)obj).contain+" , "+node.contain);
+                if(node.equals(obj)){
+                    resList.addAll(((TreeNode) obj).children);
+                    if(((TreeNode)obj).children.size()>0){
+                        System.out.println(resList);
+                        resList.addAll(getChild((TreeNode) obj));
+                    }
+                }
+            }
+        }
+        return resList;
+    }
+
+    @Override
     public boolean addChild(Object... node) {
         for(Object item:node){
             if((item instanceof TreeNode)){
@@ -113,6 +149,18 @@ public class TreeNode implements Tree {
                 for(int i =0;i<length-1;i++){
                     reduceLength();
                 }
+            }
+            if(root!=null){
+                Iterator iterator = (Iterator) root.innerList.keySet();
+                List<TreeNode> list = new ArrayList<>();
+                while (iterator.hasNext()){
+                    TreeNode tmp = (TreeNode) iterator.next();
+                    if(tmp.equals(node))
+                        list.add(tmp);
+                }
+
+            }else if(root()!=null){
+
             }
             return children.remove(node);
         }

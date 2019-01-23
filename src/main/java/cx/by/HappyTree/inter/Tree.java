@@ -9,6 +9,7 @@ package cx.by.HappyTree.inter;
 import cx.by.HappyTree.HappyTree;
 import cx.by.HappyTree.TreeNode;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public interface Tree {
@@ -24,8 +25,8 @@ public interface Tree {
     void incrLength();
     void reduceLength();
     long length();
-    TreeNode[] findToRear(Object contain);
-    TreeNode[] findToFrond(Object contain);
-    TreeNode[] findAll(Object contain);
+    ArrayList<TreeNode> findToRear(Object contain);
+    ArrayList<TreeNode> findToFrond(Object contain);
+    ArrayList<TreeNode> findAll(Object contain);
     TreeNode root();
 }

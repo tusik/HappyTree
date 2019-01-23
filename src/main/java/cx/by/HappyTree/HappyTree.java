@@ -6,8 +6,11 @@
 
 package cx.by.HappyTree;
 
+import cx.by.HappyTree.inter.Tree;
+
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 
 
@@ -17,6 +20,22 @@ public class HappyTree extends TreeNode {
         super();
         root=this;
     }
+
+    @Override
+    public ArrayList<TreeNode> findAll(Object contain) {
+        Iterator key = innerList.keySet().iterator();
+        ArrayList<TreeNode> list = new ArrayList<>();
+        while(key.hasNext()){
+            TreeNode node = (TreeNode) key.next();
+            for(Object o : innerList.get(node)){
+                if(o==contain){
+                    list.add(node);
+                }
+            }
+        }
+        return list;
+    }
+
     @Override
     public boolean addChild(Object... node) {
         for(Object o:node){

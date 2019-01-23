@@ -161,18 +161,18 @@ public class TreeNode implements Tree {
     }
 
     @Override
-    public TreeNode[] findToRear(Object contain) {
-        return new TreeNode[0];
+    public ArrayList<TreeNode> findToRear(Object contain) {
+        return null;
     }
 
     @Override
-    public TreeNode[] findToFrond(Object contain) {
-        return new TreeNode[0];
+    public ArrayList<TreeNode> findToFrond(Object contain) {
+        return null;
     }
 
     @Override
-    public TreeNode[] findAll(Object contain) {
-        return new TreeNode[0];
+    public ArrayList<TreeNode> findAll(Object contain) {
+        return null;
     }
 
     @Override

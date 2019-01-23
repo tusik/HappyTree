@@ -35,6 +35,7 @@ public class MainTest {
         System.out.println(happyTree);
         happyTree.removeChild(node1);
         System.out.println(System.currentTimeMillis()-start);
+        System.out.println(happyTree.findAll("node1"));
     }
     @Test
     public void objectTest(){

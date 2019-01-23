@@ -73,20 +73,25 @@ public class TreeNode implements Tree {
     public boolean addChild(Object... node) {
         for(Object item:node){
             if((item instanceof TreeNode)){
+                if(((TreeNode)item).contain.equals("node1")){
+                    System.out.println("123");
+                }
                 if(root==null){
                     Object tree = root();
                     if(tree instanceof HappyTree){
                         HappyTree t = (HappyTree) tree;
-                        if(t.innerList.get(this)!=null){
-                            t.innerList.get(this).add((TreeNode)item);
+                        if(t.innerList.get(this)==null){
+                            t.innerList.put(this,new ArrayList<Object>());
                         }
+                        t.innerList.get(this).add((TreeNode)item);
                     }
                 }else {
-                    if(root.innerList.get(this)!=null){
+                    if(root.innerList.get(this)==null){
                         root.innerList.get(this).add((TreeNode)item);
                     }else {
                         root.innerList.put(this,new ArrayList<Object>());
                     }
+                    root.innerList.get(this).add((TreeNode)item);
                 }
                 long maxLen = 1;
                 for (TreeNode tree:children) {

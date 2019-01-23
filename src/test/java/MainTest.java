@@ -7,7 +7,7 @@ public class MainTest {
     @Test
     public void main(){
         long start = System.currentTimeMillis();
-        TreeNode happyTree = new HappyTree();
+        TreeNode happyTree = new HappyTree("root");
         TreeNode node1 = new TreeNode("node1");
         TreeNode node2 = new TreeNode("node2");
         TreeNode node3 = new TreeNode("node3");
@@ -35,7 +35,7 @@ public class MainTest {
         System.out.println(happyTree);
         happyTree.removeChild(node1);
         System.out.println(System.currentTimeMillis()-start);
-        System.out.println(happyTree.findAll("node1"));
+        System.out.println(happyTree.findAll("node2"));
     }
     @Test
     public void objectTest(){

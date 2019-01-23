@@ -20,6 +20,9 @@ public class HappyTree extends TreeNode {
         super();
         root=this;
     }
+    public HappyTree(Object contain){
+        super(contain);
+    }
 
     @Override
     public ArrayList<TreeNode> findAll(Object contain) {
@@ -40,13 +43,13 @@ public class HappyTree extends TreeNode {
     public boolean addChild(Object... node) {
         for(Object o:node){
             ((TreeNode)o).setRoot(this);
-            if(this.innerList.get(this)==null){
-                ArrayList<Object> list = new ArrayList<>();
-                list.add(((TreeNode) o).contain);
-                this.innerList.put(this,list);
-            }else {
-                this.innerList.get(this).add(((TreeNode) o).contain);
-            }
+//            if(this.innerList.get(this)==null){
+//                ArrayList<Object> list = new ArrayList<>();
+//                list.add(((TreeNode) o).contain);
+//                this.innerList.put(this,list);
+//            }else {
+//                this.innerList.get(this).add(((TreeNode) o).contain);
+//            }
             listTreeToSetRoot((TreeNode) o);
         }
         return super.addChild(node);
@@ -56,11 +59,11 @@ public class HappyTree extends TreeNode {
             n.setRoot(this);
             if(this.innerList.get(n.parent)==null){
                 ArrayList<Object> list = new ArrayList<>();
-                list.add(((TreeNode) n).contain);
+                list.add(((TreeNode) n));
                 this.innerList.put(node,list);
 
             }else {
-                this.innerList.get(node).add(((TreeNode) n).contain);
+                this.innerList.get(node).add(((TreeNode) n));
             }
             if(n.children().size()>0){
                 listTreeToSetRoot(n);

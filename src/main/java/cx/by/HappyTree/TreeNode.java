@@ -73,9 +73,6 @@ public class TreeNode implements Tree {
     public boolean addChild(Object... node) {
         for(Object item:node){
             if((item instanceof TreeNode)){
-                if(((TreeNode)item).contain.equals("node1")){
-                    System.out.println("123");
-                }
                 if(root==null){
                     Object tree = root();
                     if(tree instanceof HappyTree){
@@ -177,7 +174,7 @@ public class TreeNode implements Tree {
 
     @Override
     public ArrayList<TreeNode> findAll(Object contain) {
-        return null;
+        return root.findAll(contain);
     }
 
     @Override

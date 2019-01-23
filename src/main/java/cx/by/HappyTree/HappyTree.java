@@ -31,7 +31,7 @@ public class HappyTree extends TreeNode {
         while(key.hasNext()){
             TreeNode node = (TreeNode) key.next();
             for(Object o : innerList.get(node)){
-                if(o==contain){
+                if(((TreeNode)o).contain.equals(contain)){
                     list.add(node);
                 }
             }

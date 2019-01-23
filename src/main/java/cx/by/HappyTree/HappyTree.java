@@ -43,13 +43,6 @@ public class HappyTree extends TreeNode {
     public boolean addChild(Object... node) {
         for(Object o:node){
             ((TreeNode)o).setRoot(this);
-//            if(this.innerList.get(this)==null){
-//                ArrayList<Object> list = new ArrayList<>();
-//                list.add(((TreeNode) o).contain);
-//                this.innerList.put(this,list);
-//            }else {
-//                this.innerList.get(this).add(((TreeNode) o).contain);
-//            }
             listTreeToSetRoot((TreeNode) o);
         }
         return super.addChild(node);

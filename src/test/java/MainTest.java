@@ -33,13 +33,16 @@ public class MainTest {
         happyTree.addChild(node2);
         happyTree.addChild(node3);
         System.out.println(happyTree);
-        happyTree.removeChild(node1);
+
         System.out.println(System.currentTimeMillis()-start);
         System.out.println(happyTree.findAll("node2"));
         System.out.println(node1.getAllChild());
         for (TreeNode node : node1.getAllChild()){
             System.out.println(node.contain());
         }
+        happyTree.removeChild(node1);
+
+        System.out.println("");
     }
     @Test
     public void objectTest(){

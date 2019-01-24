@@ -6,7 +6,6 @@
 
 package cx.by.HappyTree.inter;
 
-import cx.by.HappyTree.HappyTree;
 import cx.by.HappyTree.TreeNode;
 
 import java.util.ArrayList;
@@ -15,7 +14,7 @@ import java.util.List;
 public interface Tree {
     boolean setParent(Object node);
     TreeNode parent();
-    HappyTree split(TreeNode node);
+    TreeNode split(TreeNode node);
     List<TreeNode> children();
     ArrayList<TreeNode> getAllChild();
     boolean addChild(Object ... node);

@@ -57,12 +57,12 @@ public class TreeNode implements Tree {
     }
 
     @Override
-    public HappyTree split(TreeNode node) {
+    public TreeNode split(TreeNode node) {
         if(children.indexOf(node)>=0){
-            node.parent = null;
             removeChild(node);
+            node.parent = null;
         }
-        return (HappyTree)node;
+        return node;
     }
 
     @Override
@@ -110,7 +110,6 @@ public class TreeNode implements Tree {
                     if(node.equals(obj)){
                         resList.addAll(((TreeNode) obj).children);
                         if(((TreeNode)obj).children.size()>0){
-                            System.out.println(resList);
                             resList.addAll(getChild((TreeNode) obj));
                         }
                     }

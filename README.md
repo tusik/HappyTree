@@ -5,6 +5,7 @@
 ![](https://img.shields.io/github/release/tusik/HappyTree.svg)
 ![](https://img.shields.io/github/tag-date/tusik/HappyTree.svg)
 ![](https://img.shields.io/badge/State-Alpha-red.svg)
+[![Coverage Status](https://coveralls.io/repos/github/tusik/HappyTree/badge.svg)](https://coveralls.io/github/tusik/HappyTree)
 
 Now we are Happy Tree Friends
 

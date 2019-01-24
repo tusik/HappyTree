@@ -134,8 +134,6 @@ public class TreeNode implements Tree {
                     }
                 }else {
                     if(root.innerList.get(this)==null){
-                        root.innerList.get(this).add((TreeNode)item);
-                    }else {
                         root.innerList.put(this,new ArrayList<Object>());
                     }
                     root.innerList.get(this).add((TreeNode)item);

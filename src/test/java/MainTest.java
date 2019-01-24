@@ -54,4 +54,10 @@ public class MainTest {
         node.setParent(tree);
         System.out.println(node);
     }
+    @Test
+    public void baseTest(){
+        HappyTree happyTree = new HappyTree();
+        TreeNode node = new TreeNode();
+        happyTree.addChild(node);
+    }
 }

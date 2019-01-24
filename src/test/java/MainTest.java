@@ -108,4 +108,10 @@ public class MainTest {
         TestCase.assertEquals(node1_1.children().size(),0);
         TestCase.assertEquals(happyTree.children().size(),3);
     }
+    @Test
+    public void I_splitTest(){
+        buildData();
+        TestCase.assertEquals(happyTree.split(node1),node1);
+        TestCase.assertEquals(happyTree.children().size(),2);
+    }
 }

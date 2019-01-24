@@ -26,8 +26,6 @@ public interface Tree {
     void incrLength();
     void reduceLength();
     long length();
-    ArrayList<TreeNode> findToRear(Object contain);
-    ArrayList<TreeNode> findToFrond(Object contain);
     ArrayList<TreeNode> findAll(Object contain);
     TreeNode root();
 }

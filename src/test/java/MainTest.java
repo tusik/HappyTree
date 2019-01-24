@@ -40,6 +40,7 @@ public class MainTest {
         for (TreeNode node : node1.getAllChild()){
             System.out.println(node.contain());
         }
+        node1.removeChild(node1_1);
         happyTree.removeChild(node1);
 
         System.out.println("");

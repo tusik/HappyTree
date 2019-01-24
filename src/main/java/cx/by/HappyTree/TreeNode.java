@@ -171,12 +171,21 @@ public class TreeNode implements Tree {
             list.add((TreeNode) node);
             remvoeChild(list);
             children.remove(node);
+            for(int i = -1; i<(length-((TreeNode) node).length());i++){
+                reduceLength();
+            }
         }
         return false;
     }
 
     @Override
     public boolean clear() {
+        if(null!=root||null!=root()){
+            List<TreeNode> list = getAllChild();
+            for(TreeNode node:list){
+                removeChildFromInnerList(node);
+            }
+        }
         children.clear();
         while(length!=1){
             reduceLength();
@@ -216,16 +225,6 @@ public class TreeNode implements Tree {
     @Override
     public long length() {
         return length;
-    }
-
-    @Override
-    public ArrayList<TreeNode> findToRear(Object contain) {
-        return null;
-    }
-
-    @Override
-    public ArrayList<TreeNode> findToFrond(Object contain) {
-        return null;
     }
 
     @Override

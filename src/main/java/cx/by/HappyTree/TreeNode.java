@@ -89,7 +89,7 @@ public class TreeNode implements Tree {
         if(root() instanceof HappyTree|| null != root){
             ArrayList<TreeNode> resList = new ArrayList<>();
             ArrayList<Object> tmpList = ((HappyTree) root()).innerList.get(current);
-            resList.addAll(getChild(this));
+            resList.addAll(getChild(current));
             for(Object node : tmpList){
                 resList.add((TreeNode) node);
             }

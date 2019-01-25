@@ -43,7 +43,7 @@ public class TreeNode implements Tree {
             this.parent = node;
             Object tmp  = node;
             while (null != ((TreeNode) tmp).parent()){
-                tmp = root.parent();
+                tmp = ((TreeNode) tmp).parent();
             }
             if(tmp instanceof HappyTree)
                 root = (HappyTree) tmp;
@@ -80,8 +80,6 @@ public class TreeNode implements Tree {
                 resList.add((TreeNode) node);
             }
             return resList;
-        }else {
-
         }
         return null;
     }
@@ -94,8 +92,6 @@ public class TreeNode implements Tree {
                 resList.add((TreeNode) node);
             }
             return resList;
-        }else {
-
         }
         return null;
     }
@@ -141,9 +137,16 @@ public class TreeNode implements Tree {
                 for (TreeNode tree:children) {
                     if(maxLen<tree.length())maxLen=tree.length();
                 }
-                for(int i = -1; i<(((TreeNode) item).length()-maxLen);i++){
-                    incrLength();
+                if(parent!=null&&((parent().length-this.length)==1||(parent().length-this.length)<=maxLen)){
+                    for(int i = -1; i<(((TreeNode) item).length()-maxLen);i++){
+                        incrLength();
+                    }
+                }else {
+                    for(int i = -1; i<(((TreeNode) item).length()-maxLen);i++){
+                        length++;
+                    }
                 }
+
                 children.add((TreeNode) item);
                 ((TreeNode)item).setParent(this);
             }else {
@@ -204,7 +207,7 @@ public class TreeNode implements Tree {
     @Override
     public void incrLength() {
         length++;
-        if(null!=parent){
+        if(null!=parent()){
             ((TreeNode)parent).incrLength();
         }
     }

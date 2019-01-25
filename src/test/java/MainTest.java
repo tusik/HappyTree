@@ -54,8 +54,14 @@ public class MainTest {
         TestCase.assertNull(node2.getAllChild());
         TestCase.assertNull(node1.getAllChild(node2));
         buildData();
+        TreeNode node2_2 = new TreeNode();
+        node2.addChild(node2_2);
         TestCase.assertEquals(happyTree.length(),5);
         TestCase.assertEquals(happyTree.children().size(),3);
+        TestCase.assertFalse(node2.addChild("asd"));
+        TreeNode node1_1_1_1_1 = new TreeNode();
+        node1_1_1_1.addChild(node1_1_1_1_1);
+        TestCase.assertEquals(happyTree.length(),6);
     }
     @Test
     public void B_getAllChildTest(){
@@ -100,6 +106,7 @@ public class MainTest {
         buildData();
         List<TreeNode>list = node1.getAllChild(node2);
         TestCase.assertEquals(list.size(),1);
+        TestCase.assertEquals(node1.findAll("node1_1").get(0),node1_1);
     }
     @Test
     public void H_clearTest(){
@@ -113,5 +120,11 @@ public class MainTest {
         buildData();
         TestCase.assertEquals(happyTree.split(node1),node1);
         TestCase.assertEquals(happyTree.children().size(),2);
+    }
+    @Test
+    public void J_equalTest(){
+        TreeNode node1 = new TreeNode();
+        TreeNode node2 = new TreeNode();
+        TestCase.assertEquals(true,node1.equals(node2));
     }
 }

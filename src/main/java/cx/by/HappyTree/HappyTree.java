@@ -6,12 +6,11 @@
 
 package cx.by.HappyTree;
 
-import cx.by.HappyTree.inter.Tree;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.List;
+
 
 
 public class HappyTree extends TreeNode {
@@ -50,13 +49,13 @@ public class HappyTree extends TreeNode {
     private void listTreeToSetRoot(TreeNode node){
         for(TreeNode n:node.children()){
             n.setRoot(this);
-            if(this.innerList.get(n.parent)==null){
+            if(this.innerList.get(n.parent())==null){
                 ArrayList<Object> list = new ArrayList<>();
-                list.add(((TreeNode) n));
+                list.add((n));
                 this.innerList.put(node,list);
 
             }else {
-                this.innerList.get(node).add(((TreeNode) n));
+                this.innerList.get(node).add((n));
             }
             if(n.children().size()>0){
                 listTreeToSetRoot(n);

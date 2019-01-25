@@ -13,11 +13,11 @@ import java.util.Iterator;
 import java.util.List;
 
 public class TreeNode implements Tree {
-    protected HappyTree root;
-    protected Object parent;
-    protected Object contain;
-    protected long length;
-    protected List<TreeNode> children;
+    HappyTree root;
+    Object parent;
+    Object contain;
+    private long length;
+    private List<TreeNode> children;
 
     public TreeNode(){
         init();
@@ -32,9 +32,8 @@ public class TreeNode implements Tree {
         contain  = null;
         children = new ArrayList<>();
     }
-    public boolean setRoot(HappyTree tree){
+    void setRoot(HappyTree tree){
         this.root = tree;
-        return true;
     }
 
     @Override
@@ -123,15 +122,15 @@ public class TreeNode implements Tree {
                     if(tree instanceof HappyTree){
                         HappyTree t = (HappyTree) tree;
                         if(t.innerList.get(this)==null){
-                            t.innerList.put(this,new ArrayList<Object>());
+                            t.innerList.put(this,new ArrayList<>());
                         }
-                        t.innerList.get(this).add((TreeNode)item);
+                        t.innerList.get(this).add(item);
                     }
                 }else {
                     if(root.innerList.get(this)==null){
-                        root.innerList.put(this,new ArrayList<Object>());
+                        root.innerList.put(this,new ArrayList<>());
                     }
-                    root.innerList.get(this).add((TreeNode)item);
+                    root.innerList.get(this).add(item);
                 }
                 long maxLen = 1;
                 for (TreeNode tree:children) {
@@ -155,21 +154,21 @@ public class TreeNode implements Tree {
         }
         return false;
     }
-    public void removeChildFromInnerList(TreeNode node){
+    private void removeChildFromInnerList(TreeNode node){
         ((HappyTree)root()).innerList.remove(node);
     }
-    public void remvoeChild(ArrayList<TreeNode> list){
+    private void removeChild(ArrayList<TreeNode> list){
         for(TreeNode node: list){
             removeChildFromInnerList(node);
         }
     }
     @Override
     public boolean removeChild(Object node) {
-        if(children.indexOf((TreeNode) node)>=0){
+        if(children.indexOf(node)>=0){
             ((HappyTree)root()).innerList.get(((TreeNode)node).parent()).remove(node);
             ArrayList<TreeNode> list = ((TreeNode)node).getAllChild();
             list.add((TreeNode) node);
-            remvoeChild(list);
+            removeChild(list);
             children.remove(node);
             for(int i = -1; i<(length-((TreeNode) node).length());i++){
                 reduceLength();
